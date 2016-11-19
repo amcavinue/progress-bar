@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/amcavinue/progress-bar.git"
   },
-  "author": "",
+  "author": "Aaron McAvinue",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amcavinue/progress-bar/issues"
