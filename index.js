@@ -1,26 +1,25 @@
-function progressBar (onStart, onProgress, onEnd) {
-    onStart();
-    
-    for (var i = 1; i <= 100; i++) {
-        console.log(i + '% done');
-        if (i % 10 === 0) {
-            onProgress(i);
-        }
-    }
-    
-    onEnd();
-}
+var events = require('events');
+var progressBar = new events.EventEmitter();
 
-function start() {
+progressBar.on('start', function() {
     console.log('Starting');
-}
+});
 
-function progress(x) {
+progressBar.on('progress', function(x) {
     console.log('Checkpoint at ' + x + '%');
-}
+});
 
-function end() {
+progressBar.on('end', function() {
     console.log('Finished');
+});
+
+progressBar.emit('start');
+
+for (var i = 1; i <= 100; i++) {
+    console.log(i + '% done');
+    if (i % 10 === 0) {
+        progressBar.emit('progress', i);
+    }
 }
 
-progressBar(start, progress, end);
+progressBar.emit('end');
